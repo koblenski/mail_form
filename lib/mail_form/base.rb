@@ -17,6 +17,12 @@ module MailForm
       self.attribute_names += names
     end
 
+    def initialize(attributes = {})
+      attributes.each do |attr, value|
+        self.public_send("#{attr}=", value)
+      end if attributes
+    end
+
     def persisted?
       false
     end
