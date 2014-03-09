@@ -4,6 +4,7 @@ module MailForm
     extend ActiveModel::Naming
     extend ActiveModel::Translation
     include ActiveModel::Validations
+    include MailForm::Validators
     include ActiveModel::AttributeMethods # 1) attribute methods behavior
     attribute_method_prefix 'clear_'      # 2) clear_ is attribute prefix
     attribute_method_suffix '?'
