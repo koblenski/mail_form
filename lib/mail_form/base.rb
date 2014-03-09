@@ -28,9 +28,14 @@ module MailForm
       false
     end
 
+    extend ActiveModel::Callbacks
+    define_model_callbacks :deliver
+
     def deliver
       if valid?
-        MailForm::Notifier.contact(self).deliver
+        run_callbacks(:deliver) do
+          MailForm::Notifier.contact(self).deliver
+        end
       else
         false
       end
